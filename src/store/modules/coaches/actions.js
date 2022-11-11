@@ -29,7 +29,11 @@ export default {
     });
   },
 
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    if (!context.getters.shouldUpdate && !payload.refresh) {
+      return;
+    }
+
     const response = await fetch(
       `https://vue-first-app-9bb00-default-rtdb.firebaseio.com/coaches.json`
     );
@@ -56,5 +60,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTime');
   },
 };

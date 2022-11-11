@@ -11,4 +11,16 @@ export default {
 
     return coaches.some((el) => el.id === userId);
   },
+  shouldUpdate(state) {
+    const lastFetch = state.lastFetch;
+
+    if (!lastFetch) {
+      return true;
+    }
+
+    const currentTime = new Date().getTime();
+    const diff = currentTime - lastFetch;
+
+    return diff / 1000 > 60;
+  },
 };
