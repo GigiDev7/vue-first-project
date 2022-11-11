@@ -1,8 +1,27 @@
 <template>
   <section>Filter</section>
-  <section>List</section>
+  <section>
+    <div class="controls">
+      <button>Refresh</button>
+      <router-link to="/register">Register as Coach</router-link>
+    </div>
+    <ul>
+      <li v-for="coach in filteredCoaches" :key="coach.id">
+        {{ coach.firstName }}
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
-export default {};
+//import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    //...mapGetters('coaches', ['coaches']),
+    filteredCoaches() {
+      return this.$store.getters['coaches/coaches'];
+    },
+  },
+};
 </script>
