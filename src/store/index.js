@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import coachModule from './modules/coaches/index';
+import requestModule from './modules/requests/index';
 
 const store = createStore({
   state() {
@@ -9,6 +10,7 @@ const store = createStore({
   },
   modules: {
     coaches: coachModule,
+    requests: requestModule,
   },
   getters: {
     userId(state) {
